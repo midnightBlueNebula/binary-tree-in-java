@@ -37,6 +37,41 @@ class BinaryTree {
     }
   }
 
+  public void delete(int val){
+    BinaryTree current = this.find(val);
+    if(current == null){
+      System.out.println("Value does not exists in binary tree.")
+    } else {
+      if(current.left != null){
+        current.root = current.left.root;
+        current.left = current.left.left;
+        current.right = current.left.right;
+      } else if(current.right != null){
+        current.root = current.right.root;
+        current.left = current.right.left;
+        current.right = current.right.right;
+      } else {
+        
+      }
+    }
+  }
+
+  public BinaryTree find(int val){
+    BinaryTree current = this;
+
+    while (current != null){
+      if(val == current.root){
+        return current;
+      } else if(val < current.root){
+        current = current.left;
+      } else {
+        current = current.right;
+      }
+    }
+
+    return current;
+  }
+
   public static void printLevels(BinaryTree node){
     int height = BinaryTree.height(node);
 
