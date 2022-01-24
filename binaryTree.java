@@ -1,5 +1,5 @@
 class BinaryTree {
-  int root;
+  Integer root;
   BinaryTree left;
   BinaryTree right;
   
@@ -16,7 +16,7 @@ class BinaryTree {
   public void add(int val){
     BinaryTree current = this;
     
-    while(current != null){
+    while(current != null && current.root != null){
       if(val == current.root){
         current = null;
       } else if(val > current.root){
@@ -40,7 +40,7 @@ class BinaryTree {
   public void delete(int val){
     BinaryTree current = this.find(val);
     if(current == null){
-      System.out.println("Value does not exists in binary tree.")
+      System.out.println("Value does not exists in binary tree.");
     } else {
       if(current.left != null){
         current.root = current.left.root;
@@ -51,7 +51,7 @@ class BinaryTree {
         current.left = current.right.left;
         current.right = current.right.right;
       } else {
-        
+        current.root = null;
       }
     }
   }
@@ -59,7 +59,7 @@ class BinaryTree {
   public BinaryTree find(int val){
     BinaryTree current = this;
 
-    while (current != null){
+    while (current != null && current.root != null){
       if(val == current.root){
         return current;
       } else if(val < current.root){
@@ -83,7 +83,7 @@ class BinaryTree {
   }
 
   private static void printCurrentLevel(BinaryTree node, int level){
-    if(node != null){
+    if(node != null && node.root != null){
       if(level == 1){
         System.out.printf("%d ", node.root);
       } else if(level > 1){
@@ -94,7 +94,7 @@ class BinaryTree {
   }
 
   public static int height(BinaryTree node){
-    if(node == null){
+    if(node == null || node.root == null){
       return 0;
     } else {
       int l = height(node.left);
