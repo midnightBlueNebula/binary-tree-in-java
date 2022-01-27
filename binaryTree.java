@@ -16,7 +16,7 @@ class BinaryTree {
   public void add(int val){
     BinaryTree current = this;
     
-    while(current != null && current.root != null){
+    while(current != null){
       if(val == current.root){
         current = null;
       } else if(val > current.root){
@@ -26,13 +26,15 @@ class BinaryTree {
         } else {
           current = current.right;
         }
-      } else{
+      } else if(val < current.root){
         if(current.left == null){
           current.left = new BinaryTree(val);
           current = null;
         } else {
           current = current.left;
         }
+      } else if(current.root == null){
+        current.root = val;
       }
     }
   }
@@ -106,7 +108,13 @@ class BinaryTree {
 }
 
 class Main {  
-  public static void main(String args[]) { 
-    System.out.println(""); 
+  public static void main(String args[]) {
+    BinaryTree tree = new BinaryTree(100,80,120);
+    
+    tree.add(30);
+    tree.add(150);
+    tree.add(90);
+    tree.add(115);
+    BinaryTree.printLevels(tree);
   } 
 }
