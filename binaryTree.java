@@ -44,16 +44,17 @@ class BinaryTree {
     if(current == null){
       System.out.println("Value does not exists in binary tree.");
     } else {
-      if(current.left != null){
-        current.root = current.left.root;
-        current.left = current.left.left;
-        current.right = current.left.right;
-      } else if(current.right != null){
-        current.root = current.right.root;
-        current.left = current.right.left;
-        current.right = current.right.right;
-      } else {
-        current.root = null;
+      while(current != null){
+        if(current.left != null){
+          current.root = current.left.root;
+          current = current.left;
+        } else if(current.right != null){
+          current.root = current.right.root;
+          current = current.right;
+        } else {
+          current.root = null;
+          current = null;
+        }
       }
     }
   }
@@ -115,6 +116,8 @@ class Main {
     tree.add(150);
     tree.add(90);
     tree.add(115);
+    BinaryTree.printLevels(tree);
+    tree.delete(120);
     BinaryTree.printLevels(tree);
   } 
 }
